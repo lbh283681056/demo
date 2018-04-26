@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+ 
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.appTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            //设置支持的SO库架构
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "2g"
+        jumboMode = true
+    }
+    repositories { flatDir { dirs 'libs' } }
+}
+
+dependencies {
+    compile files('libs/pldroid-player-2.1.0.jar')
+    api "com.android.support:appcompat-v7:${V7_APPCOMPAT_VERSION}"
+    api "com.android.support:recyclerview-v7:${RECYCLER_VIEW_SUPPORT_VERSION}"
+    compile 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    compile 'com.google.zxing:core:3.2.0'
+}
