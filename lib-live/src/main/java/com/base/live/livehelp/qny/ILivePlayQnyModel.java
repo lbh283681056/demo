@@ -6,11 +6,10 @@ package com.base.live.livehelp.qny;
  */
 public interface ILivePlayQnyModel  {
     /**
-     * 绑定地址
-     * @param path
-     * @param loop
+     * 设置回调
+     * @param mQnyCallBack
      */
-    void bindData(String path, boolean loop);
+    void setQnyCallBack(IQnyCallBack mQnyCallBack);
     /**
      * 绑定地址
      * @param path

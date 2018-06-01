@@ -31,10 +31,8 @@ public class QnyAudioPlayModel extends BaseLiveHelp implements ILivePlayQnyModel
     private String mAudioPath;
     private AVOptions mAVOptions;
     private boolean mIsStopped = false;
-
     private TelephonyManager mTelephonyManager;
     private PhoneStateListener mPhoneStateListener;
-
     private boolean loop = false;
 
     private Context mContext;
@@ -46,8 +44,6 @@ public class QnyAudioPlayModel extends BaseLiveHelp implements ILivePlayQnyModel
     public QnyAudioPlayModel(Context context) {
         this.mContext = context;
     }
-
-
     @Override
     public long getCurrentPosition() {
         return mMediaPlayer == null ? 0 : mMediaPlayer.getCurrentPosition();
@@ -138,6 +134,10 @@ public class QnyAudioPlayModel extends BaseLiveHelp implements ILivePlayQnyModel
     }
 
 
+    @Override
+    public void setQnyCallBack(IQnyCallBack mQnyCallBack) {
+
+    }
 
     @Override
     public void bindData(String path) {
@@ -155,12 +155,6 @@ public class QnyAudioPlayModel extends BaseLiveHelp implements ILivePlayQnyModel
 
         prepare();
         startTelephonyListener();
-    }
-
-    @Override
-    public void bindData(String path, boolean loop) {
-        this.loop = loop;
-        bindData(path);
     }
 
     @Override

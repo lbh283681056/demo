@@ -26,9 +26,9 @@ android {
 }
 
 dependencies {
-    compile files('libs/pldroid-player-2.1.0.jar')
-    api "com.android.support:appcompat-v7:${V7_APPCOMPAT_VERSION}"
-    api "com.android.support:recyclerview-v7:${RECYCLER_VIEW_SUPPORT_VERSION}"
-    compile 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
-    compile 'com.google.zxing:core:3.2.0'
+    api files('libs/pldroid-player-2.1.0.jar')
+    implementation "com.android.support:appcompat-v7:${V7_APPCOMPAT_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${RECYCLER_VIEW_SUPPORT_VERSION}"
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
 }

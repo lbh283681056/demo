@@ -1,7 +1,7 @@
 //package com.base.code.utils;
 //
-//import com.cyjh.util.DateUtil;
-//import com.cyjh.util.FileUtils;
+//import com.base.util.DateUtil;
+//import com.base.util.FileUtils;
 //
 //public class LogUtil {
 //

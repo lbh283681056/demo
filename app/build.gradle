@@ -1,28 +1,210 @@
 apply plugin: 'com.android.application'
+//project.apply {[plugin: 'com.android.application']}
+
+//apply plugin: 'mygradle'
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-
-
     defaultConfig {
         applicationId "com.base.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.appTargetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+//    //可以设置不通产品的不同属性
+//    productFlavors{
+//        red{
+//
+//        }
+//
+//        bule{
+//
+//        }
+//    }
+
+    //同一种产品的不通类型
     buildTypes {
-        release {
+        debug {
+//            signingConfig signingConfigs.debug
+            buildConfigField "String", "API_URL", "\"http://www.baidu.com\""
+            resValue "string", "app_name", "lbhdemodeb"
             minifyEnabled false
+            applicationIdSuffix ".debug"
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+//            signingConfig signingConfigs.release
+
+            buildConfigField "String", "API_URL", "\"http://www.baidu.com\""
+            resValue "string", "app_name", "lbhdemorel"
+//            //混淆代码 所短代码命名
+//            minifyEnabled true
+//            //缩减资源
+//            shrinkResources true
+
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+//        mysta.initWith(debug)
+//
+//        mysta {
+//            buildConfigField "String","API_URL","\"http://www.baidu.com\""
+//            resValue "string","app_name","mysta"
+//            applicationIdSuffix ".mystar"
+//
+//            minifyEnabled false
+//            debuggable  false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+
     }
+
+    task showAriants << {
+        android.applicationVariants.all {
+                //            variant->
+//                println variant.name
+            variant ->
+                variant.outputs.each {
+                    output ->
+//                    println $output.name
+
+                        def file = output.outputFile
+                        if (file) {
+                            println "is ${file.path}"
+
+                        } else {
+                            println "is null"
+
+                        }
+//                    output.outputFile = new File(file.getParent(),file.name.replace(".apk","-${variant.versionName}.apk"))
+                }
+        }
+    }
+
+//    signingConfigs{
+//        release{
+//            android.signingConfigs.release.keyPassword = pwd
+//
+//        }
+//        debug{
+//
+//        }
+//    }
 }
+//task sss(type:com.base.mygradle.MyTask)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib-widget')
     implementation project(':lib-live')
     implementation project(':lib-download')
+    implementation project(':lib-login')
+    implementation project(':lib-share')
+    implementation project(':lib-connect')
+
 }
+
+
+class MyClass {
+    String name
+
+    def count(def num) {
+        num * num
+    }
+    //代码块 closures
+    def countC = {
+        num -> num * num
+    }
+
+    def countCC = {
+        it * it
+    }
+}
+
+List list = [2, 3, 4, 5, 6, 'asda']
+Map map = [fuck: 10, fuck1: 20]
+task showMyClass << {
+    def myClass = new MyClass()
+    println myClass.countC(5)
+    println myClass.countCC(6)
+    list.each() {
+        println it
+    }
+    println map.fuck
+
+}
+
+
+task t1 << {
+    println 't1'
+}
+task t2 << {
+    println 't2'
+}
+//必须两个同时执行
+//t2.mustRunAfter t1
+//只要运行t2就可以运行t1
+t2.dependsOn t1
+
+
+def pwd = ''
+
+task obPwd << {
+    println project.path
+
+    if (project.file('private.properties').exists()) {
+        def properties = new Properties()
+        properties.load(project.file('private.properties').newDataInputStream())
+        pwd = properties.getProperty('release.password')
+
+        if (!pwd?.trim()) {
+            pwd = new String(System.console().readPassword("\n pwd?"))
+        }
+    }
+    println pwd
+}
+
+
+tasks.whenTaskAdded {
+    theTask ->
+        if (theTask.name.equals("packageRelease")) {
+            theTask.dependsOn "obPwd"
+        }
+}
+
+
+class Sss implements Plugin<Project> {
+
+    @Override
+    void apply(Project target) {
+
+    }
+}
+//android.variantFilter{
+//
+//}
+//class  HelloTask extends DefaultTask{
+//    @Optional
+//    def msg = 'fuck'
+//    @TaskAction
+//    def hello(){
+//        println "sss $msg"
+//    }
+//    @TaskAction
+//    def ss(){
+//        println 'sdsfdf'
+//    }
+//
+//    def ssssss(){
+//    println 'asdasdasd'
+//    }
+//}
+//HelloTask sss  = new HelloTask()
+//
+//task ss << {
+//    sss.ssssss()
+//}

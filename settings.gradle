@@ -1,1 +1,1 @@
-include ':app', ':lib-code', ':lib-widget',':lib-live', ':lib-live-qny', ':lib-live-vr', ':lib-download', ':lib-connect'
+include ':app', ':lib-code', ':lib-widget',':lib-live', ':lib-live-qny', ':lib-live-vr', ':lib-download', ':lib-connect', ':lib-weixin', ':lib-login', ':lib-share', ':lib-pay', ':mygradle', ':lib-util'

@@ -22,7 +22,7 @@ public class OrmLiteOpenHelper extends OrmLiteSqliteOpenHelper {
     /**
      * 数据库名称
      */
-    public static final String DATABASE_NAME = "cyjh.sqlite";
+    public static final String DATABASE_NAME = "base.sqlite";
     /**
      * 版本号
      */

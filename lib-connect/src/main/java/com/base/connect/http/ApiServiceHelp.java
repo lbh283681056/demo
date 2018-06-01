@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 
+import com.base.code.application.BaseApplication;
 import com.base.connect.http.bean.BaseResultWrapper;
 
 import java.util.concurrent.TimeUnit;

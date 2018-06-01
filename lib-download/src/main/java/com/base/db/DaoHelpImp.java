@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-//import com.kaopu.video.global.Global;
-
 public class DaoHelpImp<T, ID> implements IDaoHelp<T, ID> {
 
     protected Dao<T, ID> dao;
