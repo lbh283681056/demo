@@ -1,22 +1,10 @@
 apply plugin: 'com.android.library'
 
 
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-version = "1.0.0"
-install{
-    repositories.mavenInstaller{
-        pom{
-            project{
-                packaging 'aar'
-                name ''
+//apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.jfrog.bintray'
+//version = "1.0.0"
 
-
-
-            }
-        }
-    }
-}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -24,9 +12,6 @@ android {
         targetSdkVersion rootProject.ext.appTargetSdkVersion
         versionCode 1
         versionName "1.0"
-    }
-    lintOptions{
-        abortOnError false
     }
 }
 
